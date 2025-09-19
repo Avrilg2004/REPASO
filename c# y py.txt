@@ -1,0 +1,107 @@
+ C#
+
+  // Declaramos variables
+        string tipoPago, tipoTarjeta;
+        int cantidad;
+        double precioUnitario, montoPagar, descuento = 0, incremento = 0, total;
+
+        // Entrada de datos
+        Console.Write("Ingrese el tipo de pago (EFECTIVO, TARJETA, TRANSFERENCIA): ");
+        tipoPago = Console.ReadLine().ToUpper();
+
+        Console.Write("Ingrese la cantidad de productos: ");
+        cantidad = int.Parse(Console.ReadLine());
+
+        Console.Write("Ingrese el precio unitario del producto: ");
+        precioUnitario = double.Parse(Console.ReadLine());
+
+        // Proceso
+        montoPagar = cantidad * precioUnitario;
+
+        switch (tipoPago)
+        {
+            case "EFECTIVO":
+                descuento = montoPagar * 0.07;
+                break;
+
+            case "TARJETA":
+                Console.Write("Ingrese el tipo de tarjeta (DEBITO o CREDITO): ");
+                tipoTarjeta = Console.ReadLine().ToUpper();
+
+                if (tipoTarjeta == "DEBITO" && cantidad > 10)
+                {
+                    descuento = montoPagar * 0.05;
+                }
+                else if (tipoTarjeta == "CREDITO")
+                {
+                    incremento = montoPagar * 0.05;
+                }
+                break;
+
+            case "TRANSFERENCIA":
+                if (montoPagar == 100)
+                {
+                    descuento = 10;
+                }
+                break;
+
+            default:
+                Console.WriteLine("Tipo de pago no válido.");
+                return;
+        }
+
+        // Cálculo final
+        total = montoPagar + incremento - descuento;
+
+        // Salida
+        Console.WriteLine($"MONTO BASE: {montoPagar}");
+        Console.WriteLine($"DESCUENTO: {descuento}");
+        Console.WriteLine($"INCREMENTO: {incremento}");
+        Console.WriteLine($"TOTAL A PAGAR: {total}");
+
+
+
+
+
+PYTHON
+
+# Declaramos variables
+descuento = 0
+incremento = 0
+
+# Entrada de datos
+tipo_pago = input("Ingrese el tipo de pago (EFECTIVO, TARJETA, TRANSFERENCIA): ").upper()
+cantidad = int(input("Ingrese la cantidad de productos: "))
+precio_unitario = float(input("Ingrese el precio unitario del producto: "))
+
+# Proceso
+monto_pagar = cantidad * precio_unitario
+
+if tipo_pago == "EFECTIVO":
+    descuento = monto_pagar * 0.07
+
+elif tipo_pago == "TARJETA":
+    tipo_tarjeta = input("Ingrese el tipo de tarjeta (DEBITO o CREDITO): ").upper()
+    if tipo_tarjeta == "DEBITO" and cantidad > 10:
+        descuento = monto_pagar * 0.05
+    elif tipo_tarjeta == "CREDITO":
+        incremento = monto_pagar * 0.05
+
+elif tipo_pago == "TRANSFERENCIA":
+    if monto_pagar == 100:
+        descuento = 10
+
+else:
+    print("Tipo de pago no válido.")
+    exit()
+
+# Cálculo final
+total = monto_pagar + incremento - descuento
+
+# Salida
+print(f"MONTO BASE: {monto_pagar}")
+print(f"DESCUENTO: {descuento}")
+print(f"INCREMENTO: {incremento}")
+print(f"TOTAL A PAGAR: {total}")
+
+
